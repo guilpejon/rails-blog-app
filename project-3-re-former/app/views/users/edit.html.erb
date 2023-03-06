@@ -1,0 +1,56 @@
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<% if false %>
+  <form action="/users" method="put">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+    <label for="user[username]">Username:</label>
+    <input type="text" name="user[username]">
+
+    <label for="user[email]">Email:</label>
+    <input type="text" name="user[email]">
+
+    <label for="user[password]">Password:</label>
+    <input type="text" name="user[password]">
+
+    <input type="submit" value="Update">
+  </form>
+<% end %>
+
+<% if false %>
+  <%= form_tag("/users", method: "put") do %>
+    <%= label_tag(:"user[username]", "Username") %>
+    <%= text_field_tag :"user[username]" %>
+
+    <%= label_tag(:"user[email]", "Email") %>
+    <%= text_field_tag :"user[email]" %>
+
+    <%= label_tag(:"user[password]", "Password") %>
+    <%= text_field_tag :"user[password]" %>
+
+    <%= submit_tag("Update") %>
+  <% end %>
+<% end %>
+
+<%= form_with(model: @user) do %>
+  <%= label_tag(:"user[username]", "Username") %>
+  <%= text_field_tag :"user[username]", @user.username, placeholder: "Your user name here" %>
+
+  <%= label_tag(:"user[email]", "Email") %>
+  <%= text_field_tag :"user[email]", @user.email, placeholder: "Your email here" %>
+
+  <%= label_tag(:"user[password]", "Password") %>
+  <%= text_field_tag :"user[password]", @user.password, placeholder: "Your password here" %>
+
+  <%= submit_tag("Update") %>
+<% end %>
