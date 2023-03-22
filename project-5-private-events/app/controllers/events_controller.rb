@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, only: %i[new create]
 
   # GET /events
   def index
@@ -21,7 +22,7 @@ class EventsController < ApplicationController
 
   # POST /events
   def create
-    @event = Event.new(event_params)
+    @event = current_user.events.new(event_params)
 
     if @event.save
       redirect_to @event, notice: "Event was successfully created."
