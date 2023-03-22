@@ -1,6 +1,12 @@
-<p style="color: green"><%= notice %></p>
-
 <%= render @event %>
+
+<h3>Attendees</h3>
+<% @event.attendees.each do |attendee| %>
+  <%= attendee.email %>
+<% end %>
+
+<br/>
+<br/>
 
 <div>
   <%= link_to "Edit this event", edit_event_path(@event) %> |

@@ -1,4 +1,6 @@
-<h1>User <%= @user.email %> events</h1>
+<h1>User <%= @user.email %></h1>
+
+<h3>Attended Events</h3>
 
 <% @events.each do |event| %>
   <b>ID:</b> <%= link_to event.id, event %>

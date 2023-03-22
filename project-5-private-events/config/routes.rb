@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :events
+  resources :events do 
+    post 'attend', to: 'attendances#create'
+  end
 
   resources :users, only: %i[show]
 

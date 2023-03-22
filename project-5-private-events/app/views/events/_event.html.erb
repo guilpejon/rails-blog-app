@@ -9,4 +9,15 @@
     <%= event.date %>
   </p>
 
+  <% if current_user %>
+    <p>
+    <% if @current_user_events.include? event %>
+      <strong>You are attending to this event!</strong>
+    <% else %>
+      <%= button_to 'Attend', event_attend_path(event), method: :post %>
+      <% %>
+    <% end %>
+    </p>
+  <% end %>
+
 </div>

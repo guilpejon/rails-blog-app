@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[ show ]
 
   def show
-    @events = @user.events.includes(:creator)
+    @events = @user.attended_events.includes(:creator)
   end
 
   private
