@@ -1,10 +1,21 @@
 <h1>User <%= @user.email %></h1>
 
-<h3>Attended Events</h3>
+<h3>Upcoming Events</h3>
 
-<% @events.each do |event| %>
+<% @upcoming_events.each do |event| %>
   <b>ID:</b> <%= link_to event.id, event %>
   <b>Location:</b> <%= event.location %>
-  <b>Date:</b> <%= event.date %>
+  <b>Date:</b> <%= event.date.strftime("%A, %B %e, %Y") %>
+  <b>Time:</b> <%= event.date.strftime("%I:%M %p") %>
+  <br/>
+<% end %>
+
+<h3>Past Events</h3>
+
+<% @past_events.each do |event| %>
+  <b>ID:</b> <%= link_to event.id, event %>
+  <b>Location:</b> <%= event.location %>
+  <b>Date:</b> <%= event.date.strftime("%A, %B %e, %Y") %>
+  <b>Time:</b> <%= event.date.strftime("%I:%M %p") %>
   <br/>
 <% end %>

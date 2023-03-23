@@ -1,8 +1,8 @@
 <%= render @event %>
 
-<h3>Attendees</h3>
+<h2>Attendees</h2>
 <% @event.attendees.each do |attendee| %>
-  <%= attendee.email %>
+  <p><%= attendee.email %></p>
 <% end %>
 
 <br/>

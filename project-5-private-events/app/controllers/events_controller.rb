@@ -9,7 +9,7 @@ class EventsController < ApplicationController
 
   # GET /events/1
   def show
-    @current_user_events = current_user.attended_events.includes(:events)
+    @current_user_events = current_user&.attended_events&.includes(:events)
   end
 
   # GET /events/new

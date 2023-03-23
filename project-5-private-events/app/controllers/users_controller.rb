@@ -3,6 +3,8 @@ class UsersController < ApplicationController
 
   def show
     @events = @user.attended_events.includes(:creator)
+    @upcoming_events = @user.attended_events.upcoming
+    @past_events = @user.attended_events.past
   end
 
   private
