@@ -1,0 +1,47 @@
+<p style="color: green"><%= notice %></p>
+
+<%= form_tag flights_path, method: :get do %>
+  <%= label_tag :departure_airport_id, "Departure Airport" %>
+  <%= select_tag :departure_airport_id, options_for_select(@airports.map { |a| [a.code, a.id] }, @selected_departure), prompt: "Select Departure Airport" %>
+  <%= label_tag :arrival_airport_id, "Arrival Airport" %>
+  <%= select_tag :arrival_airport_id, options_for_select(@airports.map { |a| [a.code, a.id] }, @selected_arrival), prompt: "Select Arrival Airport" %>
+  <%= label_tag :passenger_count, "Passengers" %>
+  <%= select_tag :passenger_count, options_for_select(@passenger_options, @selected_passengers), prompt: "Select Passenger Count" %>
+  <%= label_tag :flight_date, "Flight Date" %>
+  <%= select_tag :flight_date, options_for_select(@flight_dates.map { |d| [d.strftime('%B %-d, %Y'), d] }, @selected_date), prompt: "Select Flight Date" %>
+  <%= submit_tag "Search Flights" %>
+<% end %>
+<%= button_to "Clear Search", root_path, method: :get %>
+
+<% if @flights.present? %>
+  <%= form_tag new_booking_path, method: :get do %>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Departure Airport</th>
+          <th>Departure Time</th>
+          <th>Arrival Airport</th>
+          <th>Flight Duration</th>
+          <th>Number of Passengers</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @flights.each do |flight| %>
+          <tr>
+            <td><%= radio_button_tag :flight_id, flight.id %></td>
+            <td><%= flight.departure_airport.code %></td>
+            <td><%= flight.start_datetime.strftime('%B %-d, %Y %l:%M %p') %></td>
+            <td><%= flight.arrival_airport.code %></td>
+            <td><%= flight.flight_duration %> hours</td>
+            <td><%= flight.passenger_count %> passengers</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= hidden_field_tag :passenger_count, params[:passenger_count] %>
+    <%= submit_tag "Continue", class: "btn btn-primary" %>
+  <% end %>
+<% else %>
+  <p>No flights match your search criteria.</p>
+<% end %>

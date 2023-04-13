@@ -1,0 +1,10 @@
+<h2>Booking Details</h2>
+
+<p><strong>Flight:</strong> <%= booking.flight.id %> (<%= booking.flight.start_datetime.strftime('%b %d, %Y %I:%M %p') %>)</p>
+
+<h3>Passengers</h3>
+
+<% booking.passengers.each do |passenger| %>
+  <h3><%= passenger.name %></h3>
+  <p><strong>Email:</strong> <%= passenger.email %></p>
+<% end %>

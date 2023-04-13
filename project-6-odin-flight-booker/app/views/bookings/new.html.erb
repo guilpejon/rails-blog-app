@@ -1,0 +1,21 @@
+<h1>Booking Details</h1>
+
+<p>Flight: <%= @flight.departure_airport.code %> to <%= @flight.arrival_airport.code %> on <%= @flight.start_datetime.strftime("%Y-%m-%d") %></p>
+
+<%= form_for @booking do |f| %>
+  <% @booking.passengers.each_with_index do |passenger, index| %>
+    <%= f.fields_for :passengers, passenger do |p| %>
+      <h2>Passenger <%= index + 1 %></h2>
+      <%= p.label :name %>
+      <%= p.text_field :name %>
+      <%= p.label :email %>
+      <%= p.text_field :email %>
+    <% end %>
+  <% end %>
+
+  <br/>
+  <br/>
+  <br/>
+  <%= hidden_field_tag :flight_id, params[:flight_id] %>
+  <%= f.submit "Book Flight" %>
+<% end %>
