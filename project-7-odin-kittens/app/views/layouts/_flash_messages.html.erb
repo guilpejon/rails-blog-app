@@ -1,0 +1,25 @@
+<div id="notice">
+  <% if flash[:success] %>
+    <div class="alert alert-success">
+      <%= flash[:success] %>
+    </div>
+  <% end %>
+
+  <% if flash[:error] %>
+    <div class="alert alert-danger">
+      <% if flash[:error].is_a?(Array) %>
+        <% flash[:error].each do |message| %>
+          <div><%= message %></div>
+        <% end %>
+      <% else %>
+        <% if flash[:error].include?("is invalid") %>
+          <div>Did you let a dog fill out this form?</div>
+        <% elsif flash[:error].include?("can't be blank") %>
+          <div>Are you sure you didn't forget to fill out a field?</div>
+        <% else %>
+          <%= flash[:error] %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
