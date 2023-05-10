@@ -1,0 +1,5 @@
+<%= form_tag photos_path, method: :get do %>
+  <%= label_tag :user_id, "Enter Flickr User ID:" %>
+  <%= text_field_tag :user_id %>
+  <%= submit_tag "Submit" %>
+<% end %>

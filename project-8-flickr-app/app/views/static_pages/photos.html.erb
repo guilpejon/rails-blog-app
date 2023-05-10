@@ -1,0 +1,4 @@
+<% @photos.each do |photo| %>
+  <% info = FLICKR.photos.getInfo(photo_id: photo.id) %>
+  <%= image_tag(Flickr.url_m(info)) %>
+<% end %>
