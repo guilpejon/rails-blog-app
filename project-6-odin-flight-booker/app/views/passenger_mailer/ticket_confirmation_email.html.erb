@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+</head>
+<body>
+  <h1>Ticket Confirmation</h1>
+
+  <p>Dear <%= @passenger.name %>,</p>
+
+  <p>Your flight booking has been confirmed. Please find the details below:</p>
+
+  <h2>Flight Details</h2>
+  <p>Departure Airport: <%= @flight.departure_airport.code %></p>
+  <p>Arrival Airport: <%= @flight.arrival_airport.code %></p>
+  <p>Departure Time: <%= @flight.start_datetime %></p>
+  <p>Flight Duration: <%= @flight.flight_duration %> minutes</p>
+
+  <h2>Passenger Details</h2>
+  <p>Name: <%= @passenger.name %></p>
+  <p>Email: <%= @passenger.email %></p>
+
+  <br/>
+
+  <p>Thank you for choosing our airline. We look forward to serving you.</p>
+
+  <p>Best regards,</p>
+  <p>The Airline Team</p>
+</body>
+</html>

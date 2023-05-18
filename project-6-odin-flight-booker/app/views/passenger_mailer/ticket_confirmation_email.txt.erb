@@ -1,0 +1,20 @@
+Ticket Confirmation
+
+Dear <%= @passenger.name %>,
+
+Your flight booking has been confirmed. Please find the details below:
+
+Flight Details:
+Departure Airport: <%= @flight.departure_airport.code %>
+Arrival Airport: <%= @flight.arrival_airport.code %>
+Departure Time: <%= @flight.start_datetime %>
+Flight Duration: <%= @flight.flight_duration %> minutes
+
+Passenger Details:
+Name: <%= @passenger.name %>
+Email: <%= @passenger.email %>
+
+Thank you for choosing our airline. We look forward to serving you.
+
+Best regards,
+The Airline Team
