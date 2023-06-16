@@ -1,0 +1,7 @@
+<nav>
+  <ul>
+    <li><%= link_to 'Users', users_path %></li>
+    <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete, data: { 'turbo-method': :delete } %></li>
+    <li>(<%= current_user&.email %>)</li>
+  </ul>
+</nav>
