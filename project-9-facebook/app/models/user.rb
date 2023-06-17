@@ -5,6 +5,8 @@ class User < ApplicationRecord
   has_many :sent_friendships, class_name: 'Friendship', foreign_key: 'sender_id'
   has_many :received_friendships, class_name: 'Friendship', foreign_key: 'receiver_id'
 
+  has_one_attached :profile_pic
+
   def self.users_with_pending_sent_friendships(user)
     joins(:received_friendships)
       .where(friendships: { sender_id: user.id, status: 'pending' })
@@ -16,10 +18,15 @@ class User < ApplicationRecord
   end
 
   def self.friends(user)
-    joins(:friendships)
-      .where(friendships: { status: 'accepted', sender_id: user.id })
-      .or(joins(:friendships)
-        .where(friendships: { status: 'accepted', receiver_id: user.id }))
+    joins("INNER JOIN friendships ON (users.id = friendships.receiver_id AND friendships.sender_id = #{user.id} AND friendships.status = 'accepted') OR (users.id = friendships.sender_id AND friendships.receiver_id = #{user.id} AND friendships.status = 'accepted')")
       .distinct
+  end
+
+  def self.friendships(user)
+    Friendship.where('sender_id = :user_id OR receiver_id = :user_id', user_id: user.id)
+  end
+
+  def self.friendship_requests(user)
+    Friendship.where("receiver_id = :user_id AND status = 'pending'", user_id: user.id)
   end
 end

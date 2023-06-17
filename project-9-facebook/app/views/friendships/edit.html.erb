@@ -1,0 +1,7 @@
+<h1>Friend Request</h1>
+<p>
+  <%= @friendship.sender.name %> sent you a friend request.
+  Do you want to accept or reject it?
+</p>
+<%= link_to 'Accept', friendship_path(@friendship), method: :patch, class: 'btn btn-success' %>
+<%= link_to 'Reject', friendship_path(@friendship), method: :delete, class: 'btn btn-danger' %>

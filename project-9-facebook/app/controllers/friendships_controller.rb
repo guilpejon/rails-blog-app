@@ -1,4 +1,8 @@
 class FriendshipsController < ApplicationController
+  def index
+    @pending_friendship_requests = User.friendship_requests(current_user)
+  end
+
   def create
     @friendship = current_user.sent_friendships.build(
       receiver_id: params[:receiver_id],
@@ -6,7 +10,7 @@ class FriendshipsController < ApplicationController
     )
 
     if @friendship.save!
-      flash[:notice] = 'Friend request sent.'
+      flash[:success] = 'Friend request sent!'
     else
       flash[:alert] = 'Failed to send friend request.'
     end
@@ -17,7 +21,7 @@ class FriendshipsController < ApplicationController
   def update
     @friendship = Friendship.find(params[:id])
     if @friendship.receiver == current_user && @friendship.update(status: 'accepted')
-      flash[:notice] = 'Friend request accepted.'
+      flash[:success] = 'Friend request accepted!'
     else
       flash[:alert] = 'Failed to accept friend request.'
     end
@@ -27,9 +31,9 @@ class FriendshipsController < ApplicationController
   def destroy
     @friendship = Friendship.find(params[:id])
     if (@friendship.sender == current_user || @friendship.receiver == current_user) && @friendship.destroy
-      flash[:notice] = 'Friend request rejected.'
+      flash[:notice] = 'Friendship rejected!'
     else
-      flash[:alert] = 'Failed to reject friend request.'
+      flash[:alert] = 'Failed to reject friendship.'
     end
     redirect_back(fallback_location: root_path)
   end

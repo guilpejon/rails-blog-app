@@ -1,0 +1,5 @@
+<p>
+  <b><%= friend_request.sender.name %></b> sent you a friend request.
+  <%= link_to 'Accept', friendship_path(friend_request), method: :patch, class: 'btn btn-success', data: { 'turbo-method': :patch } %>
+  <%= link_to 'Reject', friendship_path(friend_request), method: :delete, class: 'btn btn-danger', data: { 'turbo-method': :delete } %>
+</p>
