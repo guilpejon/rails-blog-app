@@ -38,6 +38,10 @@ nav ul li a {
     margin-top: -1.2rem
 }
 
+.nav-link:hover, .nav-link:focus {
+  color: var(--bs-nav-link-hover-color);
+}
+
 .badge {
   display: inline-block;
   padding: 0.25em 0.4em;

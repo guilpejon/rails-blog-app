@@ -61,6 +61,8 @@ group :development do
 end
 
 gem 'devise', '~> 4.9'
+gem 'devise-bootstrap5'
+gem 'devise-i18n'
 gem 'faker'
 
 gem 'bootstrap', '~> 5.3.0.alpha3'
