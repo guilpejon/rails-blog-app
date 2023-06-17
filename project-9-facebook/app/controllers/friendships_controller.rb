@@ -5,8 +5,7 @@ class FriendshipsController < ApplicationController
 
   def create
     @friendship = current_user.sent_friendships.build(
-      receiver_id: params[:receiver_id],
-      status: 'pending'
+      receiver_id: params[:receiver_id]
     )
 
     if @friendship.save!
@@ -20,7 +19,7 @@ class FriendshipsController < ApplicationController
 
   def update
     @friendship = Friendship.find(params[:id])
-    if @friendship.receiver == current_user && @friendship.update(status: 'accepted')
+    if @friendship.receiver == current_user && @friendship.accepted!
       flash[:success] = 'Friend request accepted!'
     else
       flash[:alert] = 'Failed to accept friend request.'

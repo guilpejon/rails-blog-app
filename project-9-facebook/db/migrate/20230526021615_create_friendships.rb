@@ -3,7 +3,7 @@ class CreateFriendships < ActiveRecord::Migration[7.0]
     create_table :friendships do |t|
       t.integer :sender_id
       t.integer :receiver_id
-      t.string :status, default: 'pending'
+      t.integer :status, default: 0
 
       t.timestamps
     end

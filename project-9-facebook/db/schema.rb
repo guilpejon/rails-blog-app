@@ -45,7 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_17_034457) do
   create_table "friendships", force: :cascade do |t|
     t.integer "sender_id"
     t.integer "receiver_id"
-    t.string "status", default: "pending"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["sender_id", "receiver_id"], name: "index_friendships_on_sender_id_and_receiver_id", unique: true

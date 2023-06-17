@@ -9,16 +9,16 @@ class User < ApplicationRecord
 
   def self.users_with_pending_sent_friendships(user)
     joins(:received_friendships)
-      .where(friendships: { sender_id: user.id, status: 'pending' })
+      .where(friendships: { sender_id: user.id, status: :pending })
   end
 
   def self.users_with_pending_received_friendships(user)
     joins(:sent_friendships)
-      .where(friendships: { receiver_id: user.id, status: 'pending' })
+      .where(friendships: { receiver_id: user.id, status: :pending })
   end
 
   def self.friends(user)
-    joins("INNER JOIN friendships ON (users.id = friendships.receiver_id AND friendships.sender_id = #{user.id} AND friendships.status = 'accepted') OR (users.id = friendships.sender_id AND friendships.receiver_id = #{user.id} AND friendships.status = 'accepted')")
+    joins("INNER JOIN friendships ON (users.id = friendships.receiver_id AND friendships.sender_id = #{user.id} AND friendships.status = 1) OR (users.id = friendships.sender_id AND friendships.receiver_id = #{user.id} AND friendships.status = 1)")
       .distinct
   end
 
@@ -27,6 +27,6 @@ class User < ApplicationRecord
   end
 
   def self.friendship_requests(user)
-    Friendship.where("receiver_id = :user_id AND status = 'pending'", user_id: user.id)
+    Friendship.pending.where(receiver_id: user.id)
   end
 end
