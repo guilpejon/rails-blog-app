@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :friendships, only: %i[create update destroy index]
   resources :users, only: %i[index]
   resources :posts, only: %i[index create]
+  resource :likes, only: %i[create destroy]
 
   root to: 'posts#index'
 end

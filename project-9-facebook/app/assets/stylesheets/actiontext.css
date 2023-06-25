@@ -29,3 +29,10 @@
   padding: 0 !important;
   max-width: 100% !important;
 }
+
+.trix-form {
+  border: 1px solid #ccc;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-bottom: 3rem;
+}

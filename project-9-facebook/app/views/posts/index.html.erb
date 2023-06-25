@@ -1,13 +1,12 @@
 <section class="container px-4 px-lg-5 mt-5">
   <h1 class="mb-5">Timeline</h1>
-  <div class="row gx-4 gx-lg-5 justify-content-center">
+  <div class="row g-4 justify-content-center">
     <%= form_with model: @post do |form| %>
-      <div class="field">
-        <%= form.label :content %>
+      <div class="field trix-form">
         <%= form.rich_text_area :content %>
-      </div>
-      <div class="text-center">
-        <button type="submit" class="btn btn-success mt-2">Create</button>
+        <div class="text-center mt-2">
+          <button type="submit" class="btn btn-success">Publish</button>
+        </div>
       </div>
     <% end %>
     <%= render partial: 'posts/post', collection: @posts %>
