@@ -12,3 +12,5 @@ document.addEventListener('turbo:load', (_e) => {
     });
   }
 })
+import "trix"
+import "@rails/actiontext"
