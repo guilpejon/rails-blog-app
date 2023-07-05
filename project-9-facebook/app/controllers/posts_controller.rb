@@ -1,6 +1,9 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.includes(:likes).order(created_at: :desc)
+    @posts = (
+      current_user.posts.includes(:likes) +
+      User.friends(current_user).includes(:likes).map(&:posts)
+    ).flatten.sort_by(&:created_at).reverse
     @post = Post.new
   end
 

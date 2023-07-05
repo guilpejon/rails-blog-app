@@ -11,6 +11,16 @@ class User < ApplicationRecord
 
   has_one_attached :profile_pic
 
+  after_create :attach_default_profile_pic
+
+  def attach_default_profile_pic
+    profile_pic.attach(
+      io: File.open(Rails.root.join('app', 'assets', 'images', 'placeholder-profile-pic.png')),
+      filename: 'default-profile-pic.png',
+      content_type: 'image/png'
+    )
+  end
+
   def self.users_with_pending_sent_friendships(user)
     joins(:received_friendships)
       .where(friendships: { sender_id: user.id, status: :pending })
