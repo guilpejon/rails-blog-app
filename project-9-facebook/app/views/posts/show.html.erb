@@ -1,0 +1,43 @@
+<section class="container px-4 px-lg-5 mt-5" id="post-show">
+  <h1 class="mb-5">Post</h1>
+  <div class="row row-cols-xl-2 justify-content-center">
+    <div class="mb-4">
+      <div class="">
+        <div class="row">
+          <div class="col-md-2">
+            <%= image_tag @post.user.profile_pic.variant(resize_to_limit: [50, 50]), class: "rounded-circle border shadow-sm dropdown-toggle" %>
+          </div>
+          <div class="col-md-10 mb-4">
+            <h5 class="my-3"><strong><%= @post.user.name %></strong></h5>
+            <%= @post.content %>
+          </div>
+          <div class="post-footer"> 
+            <% if @post.liking_users.include?(current_user) %>
+              <%= link_to likes_path(post_id: @post.id, user_id: current_user.id), method: :delete, class: 'mt-auto justify-content-center mb-2', data: { 'turbo-method': :delete } do %>
+                <i class="fa fa-thumbs-up text-success"></i><%= @post.likes.count %>
+              <% end%>
+            <% else %>
+              <%= link_to likes_path(post_id: @post.id), method: :post, class: 'mt-auto justify-content-center mb-2', data: { 'turbo-method': :post } do %>
+                <i class="fa fa-thumbs-up"></i><%= @post.likes.count %>
+              <% end%>
+            <% end%>
+            <%= link_to post_path(@post) do %>
+              <i class="fa fa-comments"></i><%= @post.comments.count %>
+            <% end %>
+            <span><i class="fa fa-clock"></i><%= time_ago_in_words(@post.created_at) %> ago</span>
+          </div>
+          <%= form_with model: Comment.new do |form| %>
+            <%= form.hidden_field :post_id, value: @post.id %>
+            <div class="field trix-form">
+              <%= form.rich_text_area :content %>
+              <div class="text-center mt-2">
+                <button type="submit" class="btn btn-success">Add Comment</button>
+              </div>
+            </div>
+          <% end %>
+          <%= render partial: 'comments/comment', collection: @comments %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

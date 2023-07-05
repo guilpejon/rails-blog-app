@@ -26,3 +26,9 @@
 .post-footer span {
   margin-left: auto;
 }
+
+#post-show .post-footer {
+  border-bottom: 1px dotted #ccc;
+  padding-bottom: 0.4rem;
+  margin-bottom: 2rem;
+}

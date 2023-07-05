@@ -1,0 +1,10 @@
+.comment-created-at {
+  color: #999;
+  text-align: right;
+  border-bottom: 1px dotted #ccc;
+  padding-bottom: 0.75rem;
+}
+
+.comment-created-at .fa {
+  margin-right: 5px;
+}

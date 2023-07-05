@@ -1,10 +1,10 @@
-<div class="timeline-item mb-4">
-  <div class="timeline-content">
+<div class="mb-4">
+  <div class="">
     <div class="row">
       <div class="col-md-1">
         <%= image_tag post.user.profile_pic.variant(resize_to_limit: [50, 50]), class: "rounded-circle border shadow-sm dropdown-toggle" %>
       </div>
-      <div class="col-md-10 mb-4">
+      <div class="col-md-11 mb-4">
         <h5><strong><%= post.user.name %></strong></h5>
         <%= post.content %>
       </div>
@@ -18,7 +18,9 @@
             <i class="fa fa-thumbs-up"></i><%= post.likes.count %>
           <% end%>
         <% end %>
-        <%# <a href="#"> <i class="fa fa-comments"></i>23</a> %>
+        <%= link_to post_path(post) do %>
+          <i class="fa fa-comments"></i><%= post.comments.count %>
+        <% end %>
         <span><i class="fa fa-clock"></i><%= time_ago_in_words(post.created_at) %> ago</span>
       </div>
     </div>

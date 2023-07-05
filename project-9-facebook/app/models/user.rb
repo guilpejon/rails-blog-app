@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :received_friendships, class_name: 'Friendship', foreign_key: 'receiver_id'
   has_many :posts
   has_many :likes
+  has_many :comments
   has_many :liked_posts, through: :likes, source: :post
 
   has_one_attached :profile_pic

@@ -9,7 +9,7 @@ class LikesController < ApplicationController
       flash[:alert] = 'Failed to like the post.'
     end
 
-    redirect_to posts_path
+    redirect_back fallback_location: root_path
   rescue ActiveRecord::RecordInvalid
     redirect_to posts_path, warning: like.errors.full_messages[0]
   end
@@ -23,7 +23,7 @@ class LikesController < ApplicationController
       flash[:alert] = 'Failed to unlike the post.'
     end
 
-    redirect_to posts_path
+    redirect_back fallback_location: root_path
   end
 
   private
