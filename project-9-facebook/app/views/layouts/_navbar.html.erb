@@ -19,6 +19,7 @@
               <% end %>
             <% end %>
           </li>
+          <li class="nav-item"><%= link_to 'Profile', profile_path, class: "nav-link #{'active' if current_page?(profile_path)}" %></li>
 
           <li class="nav-item"><%= link_to 'Sign Out', destroy_user_session_path, class: 'nav-link', method: :delete, data: { 'turbo-method': :delete } %></li>
           <li class="nav-item"><%= image_tag current_user.profile_pic.variant(resize_to_limit: [50, 50]), class: "rounded-circle border shadow-sm dropdown-toggle", id: "dropdownMenuButton", data: {toggle: "dropdown"}, aria: {haspopup: "true", expanded:"false"} %></li>

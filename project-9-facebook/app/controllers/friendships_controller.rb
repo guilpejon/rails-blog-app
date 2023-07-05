@@ -9,7 +9,7 @@ class FriendshipsController < ApplicationController
     )
 
     if @friendship.save!
-      flash[:success] = 'Friend request sent!'
+      flash[:success] = 'Friend request sent.'
     else
       flash[:alert] = 'Failed to send friend request.'
     end
@@ -20,7 +20,7 @@ class FriendshipsController < ApplicationController
   def update
     @friendship = Friendship.find(params[:id])
     if @friendship.receiver == current_user && @friendship.accepted!
-      flash[:success] = 'Friend request accepted!'
+      flash[:success] = 'Friend request accepted.'
     else
       flash[:alert] = 'Failed to accept friend request.'
     end
@@ -30,7 +30,7 @@ class FriendshipsController < ApplicationController
   def destroy
     @friendship = Friendship.find(params[:id])
     if (@friendship.sender == current_user || @friendship.receiver == current_user) && @friendship.destroy
-      flash[:notice] = 'Friendship rejected!'
+      flash[:notice] = 'Friendship rejected.'
     else
       flash[:alert] = 'Failed to reject friendship.'
     end

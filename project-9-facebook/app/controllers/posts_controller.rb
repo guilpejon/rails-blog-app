@@ -11,7 +11,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
 
     if @post.save!
-      flash[:success] = 'Post was successfully created!'
+      flash[:success] = 'Post was successfully created.'
     else
       flash[:alert] = 'Failed to create post.'
     end
