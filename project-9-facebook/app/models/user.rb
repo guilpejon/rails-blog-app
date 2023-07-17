@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: %i[facebook]
 
   has_many :sent_friendships, class_name: 'Friendship', foreign_key: 'sender_id'
   has_many :received_friendships, class_name: 'Friendship', foreign_key: 'receiver_id'
@@ -12,6 +13,17 @@ class User < ApplicationRecord
   has_one_attached :profile_pic
 
   after_create :attach_default_profile_pic
+
+  def self.from_omniauth(auth)
+    user = find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
+      user.name = auth.info.name
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20]
+    end
+    downloaded_image = URI.open(auth.info.image)
+    user.profile_pic.attach(io: downloaded_image, filename: 'profile_pic.jpg')
+    user
+  end
 
   def attach_default_profile_pic
     profile_pic.attach(

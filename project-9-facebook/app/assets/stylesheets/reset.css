@@ -1,3 +1,14 @@
-a{
+a {
   text-decoration: none !important;
+}
+
+button {
+  background: none;
+  padding: 0;
+  color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
+  border: none;
+}
+
+button:hover {
+  --bs-link-color-rgb: var(--bs-link-hover-color-rgb);
 }
