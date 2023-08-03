@@ -66,6 +66,8 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    addressable (2.8.5)
+      public_suffix (>= 2.0.2, < 6.0)
     autoprefixer-rails (10.4.13.0)
       execjs (~> 2)
     bcrypt (3.1.18)
@@ -117,6 +119,10 @@ GEM
     irb (1.6.4)
       reline (>= 0.3.0)
     jwt (2.7.1)
+    launchy (2.5.2)
+      addressable (~> 2.8)
+    letter_opener (1.8.1)
+      launchy (>= 2.2, < 3)
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -172,6 +178,7 @@ GEM
     orm_adapter (0.5.0)
     pg (1.5.3)
     popper_js (2.11.7)
+    public_suffix (5.0.3)
     puma (5.6.5)
       nio4r (~> 2.0)
     racc (1.6.2)
@@ -275,6 +282,7 @@ DEPENDENCIES
   faker
   image_processing (~> 1.2)
   importmap-rails
+  letter_opener (~> 1.8)
   omniauth-facebook (~> 9.0)
   omniauth-rails_csrf_protection (~> 1.0)
   open-uri
@@ -282,7 +290,6 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)
   ruby-vips
-  sassc-rails
   sprockets-rails
   stimulus-rails
   turbo-rails

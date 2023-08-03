@@ -13,6 +13,11 @@ class User < ApplicationRecord
   has_one_attached :profile_pic
 
   after_create :attach_default_profile_pic
+  after_create :send_welcome_email
+
+  def send_welcome_email
+    UserMailer.with(user: self).welcome_email.deliver_later
+  end
 
   def self.from_omniauth(auth)
     user = find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
